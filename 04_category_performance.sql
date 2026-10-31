@@ -1,18 +1,12 @@
--- ==============================================================================
--- 04_advanced_views.sql
--- penerangan: penciptaan virtual table (view) untuk menyimpan logik pengiraan
---             bagi kegunaan pelaporan dan integrasi dashboard luaran.
--- ==============================================================================
+-- Kemaskini semula View 04
+CREATE OR REPLACE VIEW vw_category_sales AS
+SELECT
+    Category,
+    ROUND(SUM(Amount), 2) AS total_sales
+FROM store_sales
+GROUP BY Category;
 
--- cipta atau kemaskini view untuk simpan logik agregasi jualan kategori
-create or replace view vw_category_sales as
-select
-    category,
-    round(sum(amount), 2) as total_sales
-from store_sales
-group by category;
-
--- panggil semula view yang telah siap dibina
-select * 
-from vw_category_sales 
-order by total_sales desc;
+-- Panggil balik hasil View
+SELECT * 
+FROM vw_category_sales 
+ORDER BY total_sales DESC;
