@@ -4,10 +4,10 @@
 -- =========================================================
 
 SELECT 
-    Category,
-    COUNT(CustomerID) AS total_orders,
-    ROUND(SUM(Amount), 2) AS total_revenue,
-    ROUND(AVG(Amount), 2) AS avg_order_value
-FROM store_sales
-GROUP BY Category
-ORDER BY total_revenue DESC;
+    category,
+    COUNT(*) AS total_orders,
+    ROUND(SUM(purchase_amount), 2) AS total_purchase_amount,
+    ROUND(AVG(purchase_amount), 2) AS avg_purchase_amount
+FROM vw_cleaned_store_sales
+GROUP BY category
+ORDER BY total_purchase_amount DESC;
