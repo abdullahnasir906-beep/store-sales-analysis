@@ -1,12 +1,16 @@
+
 -- ==============================================================================
 -- 03_business_aggregations.sql
--- penerangan: fasa pengiraan metrik global (KPI keseluruhan perniagaan).
+-- Purpose: Calculate global business KPIs
 -- ==============================================================================
 
--- kira jumlah keseluruhan prestasi perniagaan secara global tanpa pecahan kategori
 SELECT 
-    count(*) as total_transactions,
-    round(sum(Amount), 2) as overall_total_sales,
-    round(avg(Amount), 2) as average_order_value,
-    round(sum(Amount * (`DiscountApplied(%)` / 100)), 2) as total_discount_given
-FROM store_sales;
+    COUNT(*) AS total_transactions,
+    ROUND(SUM(Amount), 2) AS overall_total_sales,
+    ROUND(AVG(Amount), 2) AS average_order_value,
+    ROUND(
+        SUM(Amount * (`discountapplied(%)` / 100)), 
+        2
+    ) AS total_discount_given
+
+FROM vw_cleaned_staging;
