@@ -3,13 +3,20 @@
 -- Purpose: Discount & Item Rating Analysis
 -- =========================================================
 
+
+-- =========================================================
 -- 1. Discount Tier Analysis
+-- Purpose: Analyze purchase metrics by discount tier
+-- =========================================================
+
 SELECT 
     CASE 
+        WHEN discount_percentage IS NULL THEN 'Unknown'
+        WHEN discount_percentage < 0 OR discount_percentage > 100 THEN 'Invalid'
         WHEN discount_percentage = 0 THEN 'No Discount (0%)'
         WHEN discount_percentage BETWEEN 1 AND 10 THEN '1 - 10%'
         WHEN discount_percentage BETWEEN 11 AND 20 THEN '11 - 20%'
-        ELSE '21% and Above' 
+        WHEN discount_percentage > 20 THEN '21% and Above'
     END AS discount_tier,
     COUNT(*) AS total_orders,
     ROUND(SUM(purchase_amount), 2) AS total_purchase_amount,
@@ -19,7 +26,11 @@ GROUP BY discount_tier
 ORDER BY total_purchase_amount DESC;
 
 
+-- =========================================================
 -- 2. Item Rating Analysis
+-- Purpose: Analyze purchase metrics by item rating
+-- =========================================================
+
 SELECT 
     item_rating,
     COUNT(*) AS total_orders,
