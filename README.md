@@ -1,31 +1,31 @@
 # 🛒 Store Sales & Customer Behaviour Analysis
 
-**SQL | Data Analytics | Business Intelligence | Power BI**
+**SQL | Data Profiling | Data Quality Validation | Data Transformation | Business Analytics**
 
 ## 📌 1. Project Overview
 
-This project explores retail store sales and customer purchasing behaviour using SQL and business-focused data analysis.
+This project analyses retail store sales and customer purchasing behaviour using SQL.
 
-The objective is to examine purchasing patterns, evaluate product category performance, understand customer demographics, and identify differences in purchasing behaviour across payment methods, seasons, discounts, and product ratings.
+The objective is to examine raw retail data, assess data quality, create a standardized staging view, and extract business insights through structured SQL analysis.
 
-Through structured data profiling, data quality validation, data transformation, and exploratory analysis, this project aims to turn raw retail data into meaningful business insights that can support better business understanding and decision-making.
+The analysis focuses on purchase performance, product category contributions, customer demographics, seasonal distribution, payment preferences, discount behaviour, and product-level performance.
 
 ## 🎯 2. Business Objectives
 
 This project aims to answer the following business questions:
 
-- **Overall Purchase Performance:** What is the total purchase value, number of purchase records, and average purchase amount?
-- **Category Performance:** Which product categories contribute the most to overall purchase value and purchase volume?
-- **Customer Demographics:** How do purchasing patterns differ across customer age groups and gender?
-- **Season & Payment Behaviour:** How are purchases distributed across seasons and payment methods?
-- **Discount & Rating Analysis:** How do purchase metrics vary across discount tiers, and how are purchased items rated?
-- **Product Performance:** Which electronics products contribute the most to purchase value?
+1. **Overall Purchase Performance:** What are the total purchase value, number of purchase records, and average purchase amount?
+2. **Category Performance:** Which product categories contribute the most to total purchase value?
+3. **Customer Demographics:** How do purchasing patterns differ across age groups and gender?
+4. **Season & Payment Distribution:** How are purchase records and purchase values distributed across seasons and payment methods?
+5. **Discount & Rating Analysis:** How do purchase amounts vary across discount tiers, and how are purchased items rated?
+6. **Product-Level Performance:** Which products contribute the most to purchase value within selected categories?
 
 ## 📊 3. Dataset Overview
 
-The analysis uses a retail store sales dataset containing **5,000 purchase records** and customer, product, and purchase-related attributes.
+The project uses a retail store sales dataset containing **5,000 purchase records** and 11 attributes.
 
-The dataset includes the following fields:
+Dataset attributes include:
 
 - CustomerID
 - Age
@@ -39,115 +39,98 @@ The dataset includes the following fields:
 - DiscountApplied(%)
 - PreviousPurchases
 
-The original CSV dataset is retained as the source for the analysis workflow.
+The original CSV dataset is retained as the source for the SQL analysis workflow.
 
-## 🛠️ 4. Data Preparation & Analytical Approach
+**Dataset considerations:**
+- The dataset contains no transaction or order ID.
+- No purchase date is available.
+- Product cost and operating expenses are not provided.
+- Purchase amount is treated as a sales-value measure, not profit.
 
-The project follows a structured workflow to prepare the dataset and perform business-focused analysis.
+## 🛠️ 4. SQL Workflow & Technical Implementation
 
-**Data Profiling & Quality Validation**
-- Examined dataset structure, record volume, and CustomerID uniqueness.
-- Checked missing values, blank text fields, and exact duplicate records.
-- Reviewed numeric ranges and categorical value consistency.
-- Examined category and product combinations.
+The project follows a modular SQL workflow to separate data profiling, data quality checks, staging preparation, and business analysis.
 
-**Data Transformation**
-- Created a reusable SQL staging view.
-- Standardized column names using snake_case aliases.
-- Applied TRIM() to text fields to remove leading and trailing whitespace.
-- Preserved the original source table.
-
-**Business Analysis**
-- Calculated overall purchase metrics and KPIs.
-- Compared purchase performance across product categories.
-- Examined purchasing patterns by age group and gender.
-- Analysed purchase distribution across seasons and payment methods.
-- Evaluated discount tiers and item ratings.
-- Performed additional category-payment and electronics product analysis.
+| SQL File | Description |
+|---|---|
+| `01_data_profiling.sql` | Explores the raw dataset, record counts, NULL values, exact duplicate rows, and basic numeric distributions. |
+| `01_data_quality_validation.sql` | Checks blank text values, potentially invalid numeric values, categorical consistency, and category-product mapping. |
+| `02_cleaned_staging.sql` | Creates a standardized staging VIEW using snake_case column aliases and TRIM() on text fields. |
+| `03_business_analysis_01_overall_metrics.sql` | Calculates overall purchase metrics and key performance indicators. |
+| `03_business_analysis_02_category_performance.sql` | Evaluates purchase performance across product categories. |
+| `03_business_analysis_03_demographics.sql` | Analyses purchasing patterns across age groups and gender. |
+| `03_business_analysis_04_season_payment.sql` | Examines purchase distribution by season and payment method. |
+| `03_business_analysis_05_discount_rating.sql` | Analyses discount tiers and customer item ratings. |
+| `04_advanced_analysis.sql` | Performs additional category-payment comparisons and product-level analysis. |
 
 ### Technical Skills Applied
 
-- SQL Aggregations: SUM(), AVG(), COUNT(), MIN(), MAX()
-- Data Transformation: TRIM(), column aliasing, SQL Views
-- Conditional Logic: CASE WHEN
-- Data Grouping: GROUP BY and ORDER BY
-- Data Quality Validation
-- Exploratory Data Analysis
+- SQL Aggregations: `SUM()`, `AVG()`, `COUNT()`, `MIN()`, `MAX()`
+- Data Quality Checks: NULL, blank value, duplicate, and numeric validation
+- Data Transformation: `TRIM()`, column aliasing, and SQL Views
+- Conditional Logic: `CASE WHEN`
+- Data Grouping: `GROUP BY` and `ORDER BY`
 - Business KPI Calculation
-- Analytical Query Design
+- Modular SQL Script Organization
 
 ## 📈 5. Business Analysis Areas
 
-**Overall Purchase Performance**
+### Overall Purchase Metrics
 
-Evaluates total purchase value, purchase record volume, average purchase amount, and purchase amount distribution.
+Evaluates total purchase value, number of purchase records, average purchase amount, and purchase amount distribution.
 
-**Category Performance**
+### Category Performance
 
-Identifies product categories with the highest purchase value and purchase record volume to understand their contribution to overall sales value.
+Compares product categories based on purchase value and purchase record counts to identify major contributors.
 
-**Customer Demographics**
+### Customer Demographics
 
-Examines purchasing patterns across age groups and gender to identify differences in average and total purchase amounts.
+Segments purchasing behaviour by age groups and gender to explore differences in purchase patterns.
 
-**Season & Payment Analysis**
+### Season & Payment Analysis
 
-Compares purchase distribution and value across seasons and payment methods to understand purchasing behaviour within the dataset.
+Examines how purchase records and purchase values are distributed across the available season and payment method categories.
 
-**Discount & Rating Analysis**
+### Discount & Rating Analysis
 
-Evaluates purchase metrics across discount tiers and examines the distribution of item ratings.
+Compares purchase metrics across discount tiers and evaluates customer item ratings.
 
-**Advanced Product & Payment Analysis**
+### Advanced Product Analysis
 
-Explores purchase performance across product categories and payment methods, including product-level performance within the Electronics category.
+Explores product-level purchase performance and category-level payment method distribution.
 
-## 💡 6. Key Business Findings
+## 💡 6. Business Value
 
-The analysis produced several notable findings:
+The analysis provides a structured view of retail purchasing behaviour that can support exploratory business discussions around:
 
-- **Electronics leads in purchase value**, contributing approximately 62.8% of the overall purchase amount.
-- **Footwear records the highest purchase volume** among product categories, with 983 purchase records.
-- **Laptop leads Electronics product performance**, recording the highest total purchase amount of 265,862.26.
-- **Card payments account for a substantially higher purchase value** than Cash on Delivery across the dataset.
-- **Discounts between 11% and 20% represent the largest discount tier** by purchase record volume.
+- Product category and inventory planning.
+- Customer segmentation and marketing decisions.
+- Reviewing purchase distribution across season categories.
+- Understanding payment method preferences.
+- Evaluating discount distribution and customer ratings.
+- Identifying products with higher purchase value contributions.
 
-These findings describe patterns observed in the dataset and do not establish causal relationships.
+These findings are exploratory and should be validated with additional business context before operational decisions are made.
 
-## 📌 7. Business Recommendations
+## ⚠️ 7. Project Limitations
 
-Based on the observed findings, the following areas may warrant further business investigation:
-
-- **Inventory Planning:** Monitor high-performing categories and products, particularly Electronics and Laptop, when reviewing inventory requirements.
-- **Product Performance Review:** Investigate differences in purchase value and average purchase amounts across individual products.
-- **Payment Behaviour:** Review payment method distribution across categories to better understand customer payment preferences.
-- **Customer Segmentation:** Use demographic purchasing patterns as a starting point for further customer analysis.
-- **Discount Strategy:** Examine discount distribution alongside purchase behaviour before evaluating promotional effectiveness.
-
-These recommendations are exploratory and should be validated with additional business data before implementation.
+- The dataset does not contain a transaction or order ID. Each row is treated as a purchase record.
+- No purchase date is available, so time-based trends cannot be evaluated.
+- Season values are analysed as existing categories, not as evidence of changes over time.
+- Product cost and operating expenses are unavailable; actual profit and profitability cannot be calculated.
+- The staging view standardizes column names and trims text values. It does not perform extensive data correction or remove records.
+- The analysis identifies patterns and associations, not causal relationships.
 
 ## 📊 8. Dashboard & Visualization
 
-A Power BI dashboard accompanies the SQL analysis to present key purchase metrics and purchasing patterns in a visual format.
+A dashboard screenshot is provided in the `reports/` folder to complement the SQL analysis and present selected purchase performance metrics visually.
 
-The dashboard provides a consolidated view of purchase performance and supports easier exploration of the analytical findings.
-
-## ⚠️ 9. Project Limitations
-
-- The dataset does not contain product cost or operating expenses; therefore, actual profit and profitability cannot be calculated.
-- No transaction date is available, so historical sales trends and time-based seasonality cannot be established.
-- CustomerID uniqueness is assessed only within the available dataset.
-- Purchase patterns and relationships identified in the analysis do not prove causation.
-- The dataset does not provide sufficient information to explain the reasons behind customer purchasing decisions.
-
-## 📁 10. Repository Structure
+## 📁 9. Repository Structure
 
 ```text
 store-sales-analysis/
 │
 ├── csv/
-│   └── Raw_store_sales.csv
-│
 ├── reports/
 │   └── dashboard screenshot
 │
@@ -162,18 +145,16 @@ store-sales-analysis/
 ├── 03_business_analysis_05_discount_rating.sql
 │
 ├── 04_advanced_analysis.sql
-│
+├── Raw_store_sales.csv
 ├── README.md
 └── LICENSE
 ```
 
-## 🚀 11. Project Outcome
+## 🚀 10. Project Outcome
 
-This project demonstrates the application of SQL to explore retail purchasing data, perform data quality validation, create reusable analytical views, calculate business metrics, and identify purchasing patterns.
+This project demonstrates the use of SQL to explore raw retail data, perform data quality validation, prepare a standardized staging view, calculate business metrics, and investigate purchasing patterns through modular analytical queries.
 
-It also demonstrates the ability to interpret analytical results and translate data findings into practical business recommendations.
-
-The project reflects an end-to-end analytical approach, from raw data exploration to business-focused insights and dashboard presentation.
+The workflow emphasizes structured SQL development, transparent data validation, reusable transformations, and business-focused analysis.
 
 ---
 
