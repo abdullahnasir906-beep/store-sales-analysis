@@ -76,27 +76,21 @@ The project follows a modular SQL workflow to separate data profiling, data qual
 ## 📈 5. Business Analysis Areas
 
 ### Overall Purchase Metrics
-
 Evaluates total purchase value, number of purchase records, average purchase amount, and purchase amount distribution.
 
 ### Category Performance
-
 Compares product categories based on purchase value and purchase record counts to identify major contributors.
 
 ### Customer Demographics
-
 Segments purchasing behaviour by age groups and gender to explore differences in purchase patterns.
 
 ### Season & Payment Analysis
-
 Examines how purchase records and purchase values are distributed across the available season and payment method categories.
 
 ### Discount & Rating Analysis
-
 Compares purchase metrics across discount tiers and evaluates customer item ratings.
 
 ### Advanced Product Analysis
-
 Explores product-level purchase performance and category-level payment method distribution.
 
 ## 💡 6. Business Value
@@ -121,19 +115,18 @@ These findings are exploratory and should be validated with additional business 
 - The staging view standardizes column names and trims text values. It does not perform extensive data correction or remove records.
 - The analysis identifies patterns and associations, not causal relationships.
 
-📊 8. Dashboard & Visualization
-An interactive Power BI dashboard has been developed and added to the `reports/` folder to visually complement the modular SQL business analysis.
+## 📊 8. Dashboard & Visualization
+
+An interactive Power BI dashboard has been developed to visually complement the modular SQL business analysis. It translates our analytical queries into a high-level executive summary, tracking overall performance, category trends, and customer behaviour.
 
 ### 🖼️ Executive Summary (Page 1 Overview)
-![Store Sales Power BI Dashboard](reports/dashboard_overview.png) *(Nota: Pastikan nama fail imej dalam folder reports/ sepadan dengan nama yang awak upload)*
+![Store Sales Power BI Dashboard](reports/dashboard_overview.png)
 
 ### 🔍 Key Visual Highlights:
-* **Global KPIs:** Displays core aggregate metrics including Total Sales (**$1.43M**), Total Records (**5K**), Average Purchase Value (**$285.09**), and transaction boundaries.
-* **Category Breakdown:** Identifies **Electronics** as the highest revenue-generating category ($0.90M).
-* **Seasonal & Payment Insights:** Evaluates purchase value distributions across all four seasons and preferred payment methods.
-* **Customer Demographics & Discounts:** Maps out purchasing behavior across age groups, genders, and discount tiers.
-
-A dashboard screenshot is provided in the `reports/` folder to complement the SQL analysis and present selected purchase performance metrics visually.
+- **Global KPIs:** Displays core aggregate metrics including Total Sales (**$1.43M**), Total Records (**5K**), and Average Purchase Value (**$285.09**).
+- **Category Performance:** Highlights **Electronics** as the dominant revenue-generating category ($0.90M).
+- **Seasonal & Payment Insights:** Evaluates purchase distributions across all four seasons and preferred payment methods.
+- **Customer Demographics & Discounts:** Maps out purchasing patterns across age groups, genders, and discount tiers.
 
 ## 📁 9. Repository Structure
 
@@ -142,7 +135,7 @@ store-sales-analysis/
 │
 ├── csv/
 ├── reports/
-│   └── dashboard screenshot
+│   └── dashboard_overview.png
 │
 ├── 01_data_profiling.sql
 ├── 01_data_quality_validation.sql
@@ -158,15 +151,3 @@ store-sales-analysis/
 ├── Raw_store_sales.csv
 ├── README.md
 └── LICENSE
-```
-
-## 🚀 10. Project Outcome
-
-This project demonstrates the use of SQL to explore raw retail data, perform data quality validation, prepare a standardized staging view, calculate business metrics, and investigate purchasing patterns through modular analytical queries.
-
-The workflow emphasizes structured SQL development, transparent data validation, reusable transformations, and business-focused analysis.
-
----
-
-**Author:** Abdullah Bin Muhammad Nasir  
-**GitHub:** [abdullahnasir906-beep](https://github.com/abdullahnasir906-beep)
