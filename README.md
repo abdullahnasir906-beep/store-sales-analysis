@@ -121,7 +121,17 @@ These findings are exploratory and should be validated with additional business 
 - The staging view standardizes column names and trims text values. It does not perform extensive data correction or remove records.
 - The analysis identifies patterns and associations, not causal relationships.
 
-## 📊 8. Dashboard & Visualization
+📊 8. Dashboard & Visualization
+An interactive Power BI dashboard has been developed and added to the `reports/` folder to visually complement the modular SQL business analysis.
+
+### 🖼️ Executive Summary (Page 1 Overview)
+![Store Sales Power BI Dashboard](reports/dashboard_overview.png) *(Nota: Pastikan nama fail imej dalam folder reports/ sepadan dengan nama yang awak upload)*
+
+### 🔍 Key Visual Highlights:
+* **Global KPIs:** Displays core aggregate metrics including Total Sales (**$1.43M**), Total Records (**5K**), Average Purchase Value (**$285.09**), and transaction boundaries.
+* **Category Breakdown:** Identifies **Electronics** as the highest revenue-generating category ($0.90M).
+* **Seasonal & Payment Insights:** Evaluates purchase value distributions across all four seasons and preferred payment methods.
+* **Customer Demographics & Discounts:** Maps out purchasing behavior across age groups, genders, and discount tiers.
 
 A dashboard screenshot is provided in the `reports/` folder to complement the SQL analysis and present selected purchase performance metrics visually.
 
