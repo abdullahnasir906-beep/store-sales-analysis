@@ -1,20 +1,20 @@
 # 🛒 Store Sales & Customer Behaviour Analysis
 
-### SQL | Data Profiling | Data Quality Validation | Data Transformation | Business Analytics | Power BI
+### SQL | Data Profiling | Data Quality Validation | Data Transformation | Star Schema Modeling | Business Analytics | Power BI
 
 ---
 
 ## 📌 1. Project Overview
 
-This project explores retail purchasing patterns through SQL-based data analysis and Power BI visualization.
+This project explores retail purchasing patterns through SQL-based data analysis, a structured Star Schema data model, and Power BI visualization.
 
-The objective was to transform raw retail data into a structured analytical dataset, assess data quality, and investigate purchasing patterns across product categories, customer demographics, seasons, payment methods, discount levels, and products.
+The objective was to transform raw retail data into a normalized analytical dataset using a Star Schema architecture, assess data quality, and investigate purchasing patterns across product categories, customer demographics, seasons, payment methods, discount levels, and products.
 
 Rather than focusing solely on data preparation, this project also emphasizes translating analytical results into meaningful business observations that can support further investigation and decision-making.
 
 **Project Workflow:**
 
-`Raw Dataset → Data Profiling → Data Quality Validation → SQL Transformation → Business Analysis → Power BI Dashboard`
+`Raw Dataset → Data Profiling → Data Quality Validation → SQL Transformation → Power BI Star Schema Modeling → Business Analysis → Power BI Dashboard`
 
 ---
 
@@ -63,9 +63,9 @@ These limitations define the scope of the analysis and prevent unsupported concl
 
 ---
 
-## 🛠️ 4. SQL Workflow & Technical Implementation
+## 🛠️ 4. SQL Workflow & Power BI Data Modeling
 
-The project uses a modular SQL workflow to separate data exploration, validation, transformation, and business analysis.
+The project uses a modular SQL workflow combined with a clean Star Schema data model in Power BI to ensure performance, maintainability, and accurate filtering relationships.
 
 ### 4.1 Data Profiling
 
@@ -104,7 +104,18 @@ Transformation activities included:
 - Creating consistent field aliases for downstream analysis.
 - Separating the cleaned analytical view from the original raw data.
 
-### 4.4 Business Analysis
+### 4.4 Power BI Star Schema Modeling
+
+To optimize reporting performance and prevent circular dependencies, the data model was structured into a clean **Star Schema** using Power Query:
+
+- **Fact Table (`store_sales`):** Retains all transaction records and foreign keys (`CustomerID`, `ItemPurchased`, `PaymentMethod`) to preserve transactional granularity.
+- **Dimension Tables:** Created via Power Query references and deduplicated to act as unique master lists:
+  - `dim_customers`: Contains unique customer demographics (`CustomerID`, `Age`, `Gender`, `PreviousPurchases`).
+  - `dim_products`: Contains unique item listings (`Category`, `ItemPurchased`).
+  - `dim_payment`: Contains unique payment methods and seasonal mappings (`PaymentMethod`, `Season`).
+- **Model Relationships:** Established active **1-to-Many (1 to *)** relationships from the dimension tables to the central fact table.
+
+### 4.5 Business Analysis
 
 Organized SQL analysis into separate scripts to improve readability, maintainability, and traceability.
 
@@ -120,11 +131,11 @@ Organized SQL analysis into separate scripts to improve readability, maintainabi
 ### Technical Skills Applied
 
 - **SQL Aggregations:** `SUM()`, `AVG()`, `COUNT()`, `MIN()`, `MAX()`
+- **Data Modeling:** Star Schema design, 1-to-Many relationships, handling dimension reference tables, and deduplication
 - **Data Quality Validation:** NULL, blank value, duplicate, and numeric checks
 - **Data Transformation:** `TRIM()`, column aliasing, and SQL Views
 - **Conditional Logic:** `CASE WHEN`
 - **Data Grouping & Sorting:** `GROUP BY`, `ORDER BY`
-- **Analytical Query Design:** Modular SQL scripts and reusable staging views
 
 ---
 
@@ -286,7 +297,7 @@ Documenting these limitations helps ensure that analytical conclusions remain wi
 
 ## 📊 8. Power BI Dashboard & Visualization
 
-An interactive Power BI dashboard was developed to complement the SQL analysis and provide a visual overview of purchasing performance.
+An interactive Power BI dashboard was developed to complement the SQL analysis and provide a visual overview of purchasing performance, powered by the normalized Star Schema data model.
 
 The dashboard brings together key metrics and purchasing breakdowns to make the results easier to explore and compare.
 
@@ -328,23 +339,3 @@ store-sales-analysis/
 ├── Raw_store_sales.csv
 ├── README.md
 └── LICENSE
-```
-
----
-
-## 🚀 10. Project Outcome
-
-This project demonstrates an end-to-end analytical workflow using SQL and Power BI, covering:
-
-- Raw dataset exploration and data quality validation.
-- SQL-based data standardization through a reusable staging view.
-- Modular business analysis across multiple purchasing dimensions.
-- Calculation and interpretation of key purchase performance metrics.
-- Power BI visualization to communicate analytical findings.
-- Identification of dataset limitations and responsible interpretation of results.
-
-Through this project, I strengthened my practical understanding of how SQL can be used to prepare, investigate, and interpret structured retail data, while developing the ability to communicate findings from a business perspective.
-
-**Tools:** MySQL | MySQL Workbench | Microsoft Power BI | Power Query
-
-**Project Repository:** [Store Sales & Customer Behaviour Analysis](https://github.com/abdullahnasir906-beep/store-sales-analysis)
