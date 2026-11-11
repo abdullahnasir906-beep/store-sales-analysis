@@ -140,106 +140,55 @@ Organized SQL analysis into separate scripts to improve readability, maintainabi
 
 ## 🔍 5. Key Business Findings & Analytical Insights
 
-The SQL analysis identified several patterns in purchase value, category contribution, purchase volume, and customer segments.
+The SQL analysis identified specific patterns across overall performance, product categories, demographics, payment channels, and discount tiers. Each finding follows a structured evaluation framework: Business Question, SQL Finding, Business Interpretation, and Potential Business Action.
 
 ### 5.1 Overall Purchase Performance
 
-**Situation & Objective**
-
-Establish an overall baseline to understand the scale and average value of purchasing activity within the dataset.
-
-**Analysis & Finding**
-
-SQL aggregation identified the following core metrics:
-
-| Metric | Result |
-|---|---:|
-| Total Purchase Value | **$1.43M** |
-| Purchase Records | **5,000** |
-| Average Purchase Value | **$285.09** |
-
-**Business Interpretation**
-
-These metrics provide an executive baseline for comparing purchasing activity across product categories and customer segments.
+- **Business Question:** What are the total purchase value, total transactions, and average purchase value within the dataset?
+- **SQL Finding:** Aggregation across the 5,000 records yielded a total purchase value of **$1.43M**, an average purchase value (AOV) of **$285.09**, and individual purchases ranging from a minimum of **$5.08** to a maximum of **$3.00K**.
+- **Business Interpretation:** The wide dispersion between minimum and maximum transaction values indicates diverse purchasing behavior, establishing a reliable macro baseline for customer segmentation.
+- **Potential Business Action:** Investigate the transaction characteristics of high-value purchases near the $3.00K threshold to determine if specific product bundles or categories drive high-ticket conversions.
 
 ### 5.2 Product Category Performance
 
-**Situation & Objective**
-
-Understand how purchase value is distributed across different product categories.
-
-**Analysis & Finding**
-
-Electronics recorded approximately **$0.90M** in purchase value, making it the dominant category by financial turnover.
-
-**Business Interpretation**
-
-Electronics represents a substantial contribution to total sales volume, highlighting its importance for category inventory management.
+- **Business Question:** Which product categories contribute the most to total purchase value?
+- **SQL Finding:** Electronics recorded approximately **$0.90M** in purchase value, establishing it as the dominant category by financial turnover within the dataset.
+- **Business Interpretation:** Electronics represents a major share of overall recorded sales, making it the primary driver of top-line value among all available product categories.
+- **Potential Business Action:** Prioritize product-level demand analysis and category mix reviews for Electronics to understand SKU-level contribution, keeping in mind that inventory levels and COGS data are required before making supply chain adjustments.
 
 ### 5.3 Customer Demographic Analysis
 
-**Situation & Objective**
-
-Explore whether purchasing patterns differ across customer age groups and gender segments.
-
-**Analysis & Finding**
-
-Within the 31–40 age group bracket:
-
-| Gender | Purchase Records | Average Purchase Value |
-|---|---:|---:|
-| Male | 456 | **$520.75** |
-| Female | 484 | **$110.23** |
-
-**Business Interpretation**
-
-The results reveal a notable variance in average purchase value between gender segments within this specific age bracket, serving as a baseline for targeted marketing strategy explorations.
+- **Business Question:** How do purchasing patterns differ across customer age groups and gender segments?
+- **SQL Finding:** Within the 31–40 age group bracket, male customers recorded 456 purchases with an average purchase value of **$520.75**, whereas female customers recorded 484 purchases with an average purchase value of **$110.23**.
+- **Business Interpretation:** While transaction counts are relatively balanced between genders in this bracket, the average purchase value exhibits a notable variance, pointing to differing spending scale within the same demographic group.
+- **Potential Business Action:** Explore product category distribution within this specific age bracket to examine whether the variance stems from high-ticket item preferences in specific sub-segments, avoiding causal assumptions about gender motivation.
 
 ### 5.4 Seasonal & Payment Method Analysis
 
-**Situation & Objective**
+- **Business Question:** How is purchasing activity distributed across payment methods within specific product categories?
+- **SQL Finding:** Within the Groceries category, Cash on Delivery (COD) recorded **173 purchase records**, slightly outpacing Card transactions, which recorded **159 purchase records**.
+- **Business Interpretation:** Payment method preferences can vary by category context, showing that essential consumer goods maintain distinct transaction channel distributions within specific product lines.
+- **Potential Business Action:** Audit payment channel adoption across all remaining categories to map out where checkout preference exists, informing future payment gateway optimization without overgeneralizing preferences to the entire dataset.
 
-Examine how purchasing activity is distributed across available seasons and payment methods.
+### 5.5 Discount Tier & Item Rating Analysis
 
-**Analysis & Finding**
-
-Within the Groceries category:
-- COD recorded **173 purchase records**.
-- Card recorded **159 purchase records**.
-
-**Business Interpretation**
-
-Demonstrates how payment channel preferences can vary across specific product categories, providing granular insights into customer checkout habits.
-
-### 5.5 Discount & Item Rating Analysis
-
-**Situation & Objective**
-
-Explore purchasing patterns across different discount levels and examine the distribution of item ratings.
-
-**Analysis & Finding**
-
-Structuring discounts into analytical bands helps evaluate customer acquisition trends without distortion from raw, unbundled granularity.
-
-**Business Interpretation**
-
-Provides a clear structural foundation for reviewing how promotional ranges interact with purchase metrics.
+- **Business Question:** How do purchase metrics and item ratings vary across structured discount tiers?
+- **SQL Finding:** Grouping discount percentages into analytical bands revealed that the lower discount tiers captured the highest volume of purchase records (approx. 2,100 records in lower brackets), while maintaining a relatively stable average item rating of around 3.7 to 3.8 across tiers.
+- **Business Interpretation:** Transaction volume concentrates heavily in baseline or lower discount brackets, indicating that frequent purchasing occurs without requiring deep promotional discounting, and item satisfaction ratings remain consistent regardless of discount depth.
+- **Potential Business Action:** Review transaction counts and average order values across deeper discount tiers to evaluate whether high promotional cuts drive proportional volume gains, keeping in mind that assessing true profit impact requires product cost and margin data.
 
 ---
 
-## 💡 6. Business Implications & Potential Actions
+## 💡 6. Actionable Business Recommendations & Investigation Areas
 
-The findings suggest several areas for further operational investigation:
+Based on the SQL findings and analytical limitations, the following areas are recommended for further business investigation:
 
-| Area | Potential Business Application |
-|---|---|
-| Category Performance | Review Electronics' contribution to purchase value when evaluating category-level inventory and product mix. |
-| Purchase Volume | Examine high-volume categories (such as Footwear) when reviewing stock movement and replenishment cycles. |
-| Customer Segmentation | Investigate differences in average purchase value across demographic brackets to refine market positioning. |
-| Payment Methods | Review payment channel distribution across categories to optimize checkout options. |
-| Discount Evaluation | Monitor purchase metrics across discount bands to safeguard gross operational margins. |
-
-**Important:** These are potential areas for strategic investigation, not proven outcomes. Operational decisions require additional context including inventory costs, transaction dates, and margin data.
+| Analytical Area | Focus of Investigation | Analytical Reasoning & Safeguard |
+|---|---|---|
+| **Category-Level Review** | Examine SKU-level demand inside Electronics. | Focus on top-line revenue contributors while acknowledging the absence of inventory cost data. |
+| **Demographic Behavioral Slices** | Cross-reference age and gender brackets with product categories. | Investigate basket-size variance without assuming direct causal motivations. |
+| **Channel Optimization** | Audit payment method distributions across all categories. | Align checkout options with category-specific customer payment habits. |
+| **Promotional Band Analysis** | Evaluate transaction volume across structured discount tiers. | Monitor discount distribution patterns without overclaiming direct profit impact. |
 
 ---
 
